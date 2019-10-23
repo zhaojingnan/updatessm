@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace指的是你的dao接口-->
+<mapper namespace="com.zhao.dao.UserDao">
+    <!--配置查询结果的列名和实体类的属性名的对应关系-->
+
+    <!--配置查询所有  其中id不能乱写必须是dao接口中的方法  resultType写的是实体类的全路径-->
+    <!--查询所有-->
+    <select id="findAll" resultType="com.zhao.domain.User">
+       select * from user u left outer join account a on u.id = a.uid
+    </select>
+
+    <insert id="save" parameterType="com.zhao.domain.User">
+        insert into user(username,address) values(#{username},#{address})
+    </insert>
+
+</mapper>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace指的是你的dao接口-->
+<mapper namespace="com.zhao.dao.IUserDao">
+    <!--配置查询结果的列名和实体类的属性名的对应关系-->
+
+    <!--配置查询所有  其中id不能乱写必须是dao接口中的方法  resultType写的是实体类的全路径-->
+    <!--根据用户名查找用户-->
+    <select id="findUser" resultType="com.zhao.domain.IUser">
+      select * from user where username=#{username}
+    </select>
+    <!--用户注册-->
+    <insert id="register" parameterType="com.zhao.domain.IUser">
+        insert into user(username,password,email,name,sex,birthday,address,tel) values(#{username},#{password},#{email},#{name},#{sex},#{birthday},#{address},#{tel})
+    </insert>
+    <!--用户多条件登录-->
+    <select id="login" resultType="com.zhao.domain.IUser">
+        select * from user where username=#{username} or email=#{username} and password=#{password}
+
+    </select>
+
+</mapper>
